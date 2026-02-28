@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+source /opt/gow/bash-lib/utils.sh
+
 ARCH_CONTAINER="arch-wolf"
 
 export DESKTOP_SESSION=sway
@@ -16,7 +18,7 @@ export DISPLAY=:0
 export $(dbus-launch)
 export REAL_WAYLAND_DISPLAY=$WAYLAND_DISPLAY
 
-
+sudo /opt/gow/startdbus.sh
 
 if [ ! -d "$HOME/Downloads" ]; then
     # Create commun folders
@@ -36,7 +38,7 @@ if ! distrobox list | grep -q "$ARCH_CONTAINER"; then
                      --yes \
                      --absolutely-disable-root-password-i-am-really-positively-sure
 
-    distrobox enter "$ARCH_CONTAINER" -- sudo pacman -Syu --noconfirm kodi
+    distrobox enter "$ARCH_CONTAINER" -- sudo pacman -Syu --noconfirm kodi kodi-addon-peripheral-joystick
   fi
 
 source /opt/gow/distrobox-kodi-launcher.sh

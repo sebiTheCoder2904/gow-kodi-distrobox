@@ -48,9 +48,12 @@ RUN curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | 
 # COPY --chmod=777 scripts/launch-comp.sh scripts/startup.sh /opt/gow/
 # COPY --chmod=777 scripts/startdbus.sh /opt/gow/startdbus
 COPY --chmod=777 scripts/startup.sh /opt/gow/startup-app.sh
-
-# Include default sway config
+COPY --chmod=777 scripts/startdbus.sh /opt/gow/startdbus.sh
 COPY --chmod=777 --chown=retro:retro scripts/distrobox-kodi-launcher.sh /opt/gow/distrobox-kodi-launcher.sh
+COPY configs/Xbox_controller.xml /opt/gow/Xbox_controller.xml
+COPY configs/Switch_controller.xml /opt/gow/Switch_controller.xml
+COPY configs/PS_controller.xml /opt/gow/PS_controller.xml
+COPY configs/settings.xml /opt/gow/settings.xml
 
 # Fix locals
 COPY scripts/locale /etc/default/locale
